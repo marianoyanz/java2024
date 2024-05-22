@@ -2,6 +2,7 @@ import java.util.Date;
 
 public class products {
 
+    String name;
     int id;
     String description;
     String brand;
@@ -20,6 +21,13 @@ public class products {
         this.salesprice = salesprice;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public void setId(int id) {
         this.id = id;
