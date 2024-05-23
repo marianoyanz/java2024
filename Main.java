@@ -25,6 +25,7 @@ public class Main {
 
                     else System.out.println("Producto cargado con exito");
 
+                    break;
                 case 2:
                     ArrayList<products> productos = new ArrayList<products>();
 
@@ -47,7 +48,7 @@ public class Main {
 
                     int id = lector.nextInt();
 
-                    if(mDB.eliminarProducto(conec,id)) System.out.println("Producto eliminado con exito.");
+                    if(!(mDB.eliminarProducto(conec,id))) System.out.println("Producto eliminado con exito.");
 
                     break;
                 case 4:
@@ -61,10 +62,8 @@ public class Main {
                         System.out.println("mal ahi cheeee");
 
                     else{
-                        System.out.println("Algunos datos...");
-
-                        System.out.println(p.getDescription());
-                        System.out.println(p.getStock());
+                        System.out.println("PRODUCTO ENCONTRADO: ");
+                        System.out.println(p.toString());
                     }
                     break;
                 case 5:
@@ -87,12 +86,11 @@ public class Main {
                     System.out.println("Ingrese el precio del producto: ");
                     Double precio = lector.nextDouble();
 
-                    if(mDB.modificarProducto(conec,des,stock,precio,idMod)) System.out.println("Producto modificado con exito.");
+                    if(!(mDB.modificarProducto(conec,des,stock,precio,idMod))) System.out.println("Producto modificado con exito.");
 
                     else System.out.println("aLgo paso compaaaa");
                     break;
                 case 0:
-
                     break;
             }
             mostrarMenu();
