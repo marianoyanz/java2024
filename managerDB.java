@@ -70,13 +70,14 @@ public class managerDB {
         ResultSet datos = ps.executeQuery();
 
         while (datos.next()) {
+
             products prod1 = new products();
             prod1.setId(datos.getInt(1));
-            prod1.setName(datos.getString(2));
-            prod1.setDescription(datos.getString(3));
+            prod1.setDescription(datos.getString(2));
+            prod1.setStock(datos.getInt(3));
             prod1.setSalesprice(datos.getDouble(4));
-            prod1.setStock(datos.getInt(5));
             Productos_lista.add(prod1);
+
         }
 
         return Productos_lista;
@@ -99,7 +100,7 @@ public class managerDB {
 
     public boolean eliminarProducto(Connection conn, int id) throws SQLException {
 
-        String query = "Delete * from products where id = ?";
+        String query = "Delete from products where id = ?";
 
         PreparedStatement ps = conn.prepareStatement(query);
 
@@ -109,28 +110,30 @@ public class managerDB {
     }
 
     public boolean agregarProducto(Connection conn) throws SQLException {
-
-
-        products prod = new products();
+        int idProd; String Des,stock,price;
 
         Scanner lector = new Scanner(System.in);
+
         System.out.println("Ingrese id del Producto(arreglar en db): ");
-        prod.setId(lector.nextInt());
+        idProd = lector.nextInt();
+
         System.out.println("Ingrese descripcion del Producto: ");
-        prod.setDescription(lector.next());
+        Des = lector.next();
+
         System.out.println("Ingrese Stock: ");
-        prod.setStock(lector.nextInt());
+        stock = lector.next();
+
         System.out.println("Ingrese Precio: ");
-        prod.setSalesprice(lector.nextDouble());
+        price = lector.next();
 
         String query = "INSERT INTO PRODUCTS (id,description,stock,salesprice) VALUES (?,?,?,?);";
 
         PreparedStatement ps = conn.prepareStatement(query);
 
-        ps.setInt(1,prod.id);
-        ps.setString(2, prod.description);
-        ps.setInt(3,prod.stock);
-        ps.setDouble(4,prod.salesprice);
+        ps.setInt(1,idProd);
+        ps.setString(2, Des);
+        ps.setString(3,stock);
+        ps.setString(4,price);
 
         return ps.execute();
     }

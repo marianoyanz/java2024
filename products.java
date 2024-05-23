@@ -65,6 +65,14 @@ public class products {
         return id;
     }
 
+    public String toString(){
+        return "Descripcion: " + this.description + " " + "Precio: " + this.salesprice + ".";
+    }
+
+
+
+
+
     public String getDescription() {
         return description;
     }

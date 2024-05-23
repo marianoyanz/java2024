@@ -19,27 +19,30 @@ public class Main {
 
         while (numero != 0) {
             switch (numero) {
-                case 2:
+                case 1:
 
-                    if(!(mDB.agregarProducto(conec))) System.out.println("Hubo un error");
+                    if(mDB.agregarProducto(conec)) System.out.println("Hubo un error");
 
                     else System.out.println("Producto cargado con exito");
 
-                case 5:
+                case 2:
                     ArrayList<products> productos = new ArrayList<products>();
 
                     productos = mDB.ListaProductos(conec);
 
-                    if(!(productos.isEmpty()))
+                    if(!(productos.isEmpty())) {
+                        System.out.println("lISTADO PRODUCTOS: ");
 
                         for (int i = 0; i < productos.size(); i++)
 
-                            System.out.println(productos.get(i).toString());
+                            System.out.println( i + ")" + productos.get(i).toString());
+
+                    }
 
                     else System.out.println("No hay productos cargados");
 
                     break;
-                case 4:
+                case 3:
                     System.out.println("Ingrese el id del producto a eliminar: ");
 
                     int id = lector.nextInt();
@@ -47,7 +50,7 @@ public class Main {
                     if(mDB.eliminarProducto(conec,id)) System.out.println("Producto eliminado con exito.");
 
                     break;
-                case 1:
+                case 4:
                     System.out.println("Ingrese el id del producto a buscar: ");
                     int idprod = lector.nextInt();
 
@@ -64,7 +67,7 @@ public class Main {
                         System.out.println(p.getStock());
                     }
                     break;
-                case 3:
+                case 5:
                     products prod = null;
 
                     System.out.println("Ingrese el id del producto a modificar: ");
@@ -92,6 +95,7 @@ public class Main {
 
                     break;
             }
+            mostrarMenu();
             System.out.println("Ingrese un numero: /para salir ingrese 0");
 
             numero = lector.nextInt();
@@ -100,14 +104,16 @@ public class Main {
 
 
     public static void mostrarMenu() {
+        System.out.println("---------------------------------------------------------------------------");
 
-        System.out.println("1)Buscar Producto");
-        System.out.println("2)Agregar Producto");
-        System.out.println("3)Modificar Producto");
-        System.out.println("4)Eliminar Producto");
-        System.out.println("5)Listar los productos");
+        System.out.println("1)Agregar Producto");
+        System.out.println("2)Listar Productos");
+        System.out.println("3)Eliminar Producto");
+        System.out.println("4)Buscar Producto");
+        System.out.println("5)Modificar Producto");
         System.out.println("0)Salir");
 
+        System.out.println("---------------------------------------------------------------------------");
     }
 
 }
