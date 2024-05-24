@@ -132,8 +132,8 @@ public class managerDB {
 
         ps.setInt(1,idProd);
         ps.setString(2, Des);
-        ps.setString(3,stock);
-        ps.setString(4,price);
+        ps.setInt(3, Integer.parseInt(stock));
+        ps.setDouble(4, Double.parseDouble(price));
 
         return ps.execute();
     }
